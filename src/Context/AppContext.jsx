@@ -11,10 +11,13 @@ export function AppContextProvider({ children }) {
     const API_KEY = import.meta.env.VITE_API_KEY;
 
     //function to fetch current user location coordinates
-    function getLocation() {
-        if(localStorage.getItem('Latitude') && localStorage.getItem('Longitude')) {
+    async function getLocation() {
+      return new Promise((resolve, reject) => {
+        if (localStorage.getItem('Latitude') && localStorage.getItem('Longitude')) {
+          resolve();
           return;
         }
+    
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -22,17 +25,21 @@ export function AppContextProvider({ children }) {
               const longitude = position.coords.longitude;
               localStorage.setItem('Latitude', latitude);
               localStorage.setItem('Longitude', longitude);
+              resolve(); // resolve only after setting
             },
             (err) => {
               console.error(err);
               setError('Location access denied or unavailable.');
+              reject(err);
             }
           );
-          fetchWeatherData();
         } else {
-          setError('Geolocation is not supported by this browser.');
+          const msg = 'Geolocation is not supported by this browser.';
+          setError(msg);
+          reject(new Error(msg));
         }
-      }
+      });
+    }
 
     //Function to fetch weather data for city searched
     const fetchSearchedWeatherData = async(city) => {

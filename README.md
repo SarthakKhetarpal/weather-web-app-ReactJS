@@ -4,7 +4,7 @@ A responsive weather application built with React that allows users to get real-
 
 ## 🔗 Live Demo
 
-[View on Vercel](https://your-app-url.vercel.app)
+[View on Vercel](https://weather-app-sarthakkhetarpal.vercel.app/)
 
 ## 🚀 Features
 

@@ -28,6 +28,7 @@ export function AppContextProvider({ children }) {
               setError('Location access denied or unavailable.');
             }
           );
+          fetchWeatherData();
         } else {
           setError('Geolocation is not supported by this browser.');
         }

@@ -10,7 +10,7 @@ export const Weather = () => {
   const { loading, weatherData, showWeatherComponent } = useContext(AppContext);
 
   useEffect(() => {
-    console.log('Reading weather data ', weatherData);
+    // console.log('Reading weather data ', weatherData);
   }, [weatherData]);
 
   if (loading) {

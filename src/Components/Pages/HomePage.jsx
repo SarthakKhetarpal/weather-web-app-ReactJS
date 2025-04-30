@@ -7,9 +7,9 @@ export const HomePage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("Calling getLocation()");
+      // console.log("Calling getLocation()");
       await getLocation();
-      console.log("Calling fetchWeatherData()");
+      // console.log("Calling fetchWeatherData()");
       await fetchWeatherData();
     };
 
